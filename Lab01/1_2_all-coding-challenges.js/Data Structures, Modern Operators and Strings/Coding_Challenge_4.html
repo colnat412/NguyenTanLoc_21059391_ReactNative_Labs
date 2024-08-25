@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Underscore to CamelCase Converter</title>
+  </head>
+  <body>
+    <script>
+      // Create and append the textarea
+      const textarea = document.createElement("textarea");
+      textarea.rows = 10;
+      textarea.cols = 30;
+      textarea.placeholder = "Enter variable names here...";
+      document.body.append(textarea);
+
+      // Create and append the button
+      const button = document.createElement("button");
+      button.textContent = "Convert";
+      document.body.append(button);
+
+      // Conversion logic
+      button.addEventListener("click", function () {
+        const inputText = textarea.value;
+        const variables = inputText.split("\n"); // Split by new line
+
+        variables.forEach((variable, index) => {
+          // Trim any surrounding spaces
+          let trimmedVariable = variable.trim().toLowerCase();
+
+          // Convert to camelCase
+          let camelCaseVar = trimmedVariable.replace(/_./g, (match) => {
+            return match.charAt(1).toUpperCase();
+          });
+
+          // Generate the checkmarks based on the index (1-based)
+          let checkmarks = "✅".repeat(index + 1);
+
+          // Log the result with checkmarks
+          console.log(`${camelCaseVar} ${checkmarks}`);
+        });
+      });
+    </script>
+  </body>
+</html>
