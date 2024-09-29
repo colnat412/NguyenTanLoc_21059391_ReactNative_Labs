@@ -1,11 +1,36 @@
+import { useEffect, useState } from "react";
 import { Image, StyleSheet, View, Text, TouchableOpacity } from "react-native";
 
-export default function HomeScreen({ navigation }) {
+import { NavigationProp, RouteProp } from "@react-navigation/native";
+
+type HomeScreenProps = {
+  navigation: NavigationProp<any>;
+  route: RouteProp<{ params: { selectedColor?: string } }, "params">;
+};
+
+export default function HomeScreen({ navigation, route }: HomeScreenProps) {
+  const [color, setColor] = useState("#234896");
+
+  useEffect(() => {
+    if (route.params?.selectedColor) {
+      setColor(route.params.selectedColor);
+    }
+  }, [route.params?.selectedColor]);
+
   return (
     <View style={styles.container}>
-      {/* <View style={{ borderWidth: 1, backgroundColor: "gray", padding: 30 }}> */}
       <View style={styles.product}>
-        <Image source={require("@/assets/images/phone.png")}></Image>
+        <Image
+          source={
+            color === "#FFFFFF"
+              ? require("@/assets/images/phone-white.png")
+              : color === "red"
+              ? require("@/assets/images/phone-red.png")
+              : color === "black"
+              ? require("@/assets/images/phone-black.png")
+              : require("@/assets/images/phone-blue.png")
+          }
+        ></Image>
         <Text style={styles.textPhone}>
           Điện Thoại Vsmart Joy 3 - Hàng chính hãng
         </Text>
@@ -39,7 +64,7 @@ export default function HomeScreen({ navigation }) {
       </View>
       <TouchableOpacity
         onPress={() => {
-          navigation.navigate("Choose");
+          navigation.navigate("ChooseColor");
         }}
         style={styles.chooseColor}
       >
@@ -57,7 +82,6 @@ export default function HomeScreen({ navigation }) {
           CHỌN MUA
         </Text>
       </TouchableOpacity>
-      {/* </View> */}
     </View>
   );
 }
@@ -66,11 +90,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    // alignItems: "center",
-    padding: 128,
     justifyContent: "center",
     flexDirection: "column",
     gap: 10,
+    paddingLeft: 60,
   },
   product: {},
   textPhone: {
@@ -113,7 +136,6 @@ const styles = StyleSheet.create({
     gap: 64,
     alignItems: "center",
   },
-
   textNotify: {
     fontSize: 12,
     fontWeight: "bold",
@@ -123,7 +145,6 @@ const styles = StyleSheet.create({
     width: "80%",
     borderWidth: 1,
     borderRadius: 10,
-    backgroundColor: "",
     justifyContent: "center",
     alignItems: "center",
     padding: 5,
