@@ -1,45 +1,49 @@
-import { Image, StyleSheet, View, Text } from "react-native";
+import { Image, StyleSheet, Platform, View, Text } from "react-native";
 
+import { HelloWave } from "@/components/HelloWave";
+import ParallaxScrollView from "@/components/ParallaxScrollView";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
 import { LinearGradient } from "expo-linear-gradient";
 
-export default function Screen3() {
+import {} from "react-native";
+
+const Screen4 = () => {
   return (
     <LinearGradient
-      start={{ x: 0.5, y: 0.75 }}
-      end={{ x: 0.5, y: 1 }}
-      colors={["#C7F4F7", "#D1F4F6", "#E5F4F5", "#37D6F8", "#00CCF9"]}
-      style={styles.container}
+      colors={[
+        "#rgba(199, 244, 246, 1)",
+        "#rgba(199, 244, 246, 1)",
+        "#rgba(199, 244, 246, 1)",
+        "#rgba(199, 244, 246, 1)",
+        "#rgba(199, 244, 246, 1)",
+        "#rgba(0, 204, 249, 1)",
+      ]}
+      style={styles.mainContainer}
     >
-      <Image source={require("@/assets/images/lock.png")}></Image>
-      <Text style={{ fontSize: 25, fontWeight: "bold" }}>FORGET PASSWORD</Text>
-      <View
-        style={{
-          flexDirection: "column",
-          gap: 10,
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <Text style={styles.title}>
-          Provide your account’s email for which you
-        </Text>
-        <Text style={styles.title}>want to reset your password</Text>
-      </View>
+      <Text style={{ fontWeight: 700, fontSize: 60 }}>CODE</Text>
+      <Text style={styles.title}>VERIFICATION</Text>
+      <View>
+        <Text style={styles.info}>Enter ontime password sent on</Text>
 
+        <Text style={styles.info}>++849092605798</Text>
+      </View>
       <View style={styles.columnButton}>
         <ThemedView
           style={{
-            backgroundColor: "rgba(196, 196, 196, 1)",
+            backgroundColor: "transparent",
             alignItems: "center",
-            paddingHorizontal: 16,
+            justifyContent: "center",
             flexDirection: "row",
             width: "80%",
           }}
         >
-          <Image source={require("@/assets/images/mail-box.png")}></Image>
-          <ThemedText style={styles.buttonText}>Email</ThemedText>
+          <View style={styles.rectangle}></View>
+          <View style={styles.rectangle}></View>
+          <View style={styles.rectangle}></View>
+          <View style={styles.rectangle}></View>
+          <View style={styles.rectangle}></View>
+          <View style={styles.rectangle}></View>
         </ThemedView>
         <ThemedView
           style={{
@@ -50,20 +54,20 @@ export default function Screen3() {
             backgroundColor: "rgba(227, 192, 0, 1)",
           }}
         >
-          <ThemedText style={styles.buttonText}>SIGN UP</ThemedText>
+          <ThemedText style={styles.buttonText}>VERIFY CODE</ThemedText>
         </ThemedView>
       </View>
     </LinearGradient>
   );
-}
+};
 
 const styles = StyleSheet.create({
-  container: {
+  mainContainer: {
     flex: 1,
     paddingTop: 30,
     justifyContent: "center",
     alignItems: "center",
-    gap: 100,
+    gap: 50,
   },
   divImage: {
     width: 400,
@@ -81,9 +85,16 @@ const styles = StyleSheet.create({
     height: 140,
   },
   title: {
-    fontSize: 18,
+    fontSize: 25,
     fontWeight: "bold",
   },
+  info: {
+    fontSize: 15,
+    textAlign: "center",
+    color: "black",
+    fontWeight: "bold",
+  },
+  rectangle: { width: 50, height: 50, borderWidth: 1 },
   button: {
     backgroundColor: "rgba(227, 192, 0, 1)",
     paddingHorizontal: 20,
@@ -105,3 +116,5 @@ const styles = StyleSheet.create({
     width: "100%",
   },
 });
+
+export default Screen4;
