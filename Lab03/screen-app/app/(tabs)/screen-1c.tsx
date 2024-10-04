@@ -8,7 +8,7 @@ import { LinearGradient } from "expo-linear-gradient";
 
 import {} from "react-native";
 
-const Screen4 = () => {
+const Screen1c = () => {
   return (
     <LinearGradient
       colors={[
@@ -117,4 +117,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Screen4;
+export default Screen1c;

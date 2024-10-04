@@ -4,7 +4,7 @@ import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
 import { LinearGradient } from "expo-linear-gradient";
 
-export default function Screen3() {
+export default function Screen1b() {
   return (
     <LinearGradient
       start={{ x: 0.5, y: 0.75 }}

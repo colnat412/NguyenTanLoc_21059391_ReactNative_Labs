@@ -1,7 +1,7 @@
 import { ThemedView } from "@/components/ThemedView";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-const Screen5 = () => {
+const Screen1d = () => {
   return (
     <View style={styles.container}>
       <View style={{ marginBottom: 50 }}>
@@ -95,4 +95,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Screen5;
+export default Screen1d;
