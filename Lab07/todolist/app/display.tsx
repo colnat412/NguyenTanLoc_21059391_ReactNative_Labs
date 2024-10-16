@@ -11,27 +11,31 @@ import {
 
 import Data from "../data/list-job";
 import { Item } from "./list/item-list";
-import { NavigationProp } from "@react-navigation/native";
+import { NavigationProp, RouteProp } from "@react-navigation/native";
 
 type DisplayPageProps = {
   navigation: NavigationProp<any>;
+  route: RouteProp<{ params: { userName: string } }, "params">;
 };
 
-const DisplayPage = ({ navigation }: DisplayPageProps) => {
+const DisplayPage = ({ navigation, route }: DisplayPageProps) => {
+  const userName = route.params?.userName;
   return (
     <View style={styles.container}>
-      <View style={styles.user}>
+      {/* <View style={styles.user}>
         <Image
           style={styles.imgUser}
           source={require("../assets/user.png")}
         ></Image>
         <View style={styles.infoUser}>
-          <Text style={{ fontSize: 20, fontWeight: "bold" }}>Hi Twinkle</Text>
+          <Text style={{ fontSize: 20, fontWeight: "bold" }}>
+            Hi {userName}
+          </Text>
           <Text style={{ fontSize: 14, fontWeight: "bold", opacity: 0.5 }}>
             Have agrate day a head
           </Text>
         </View>
-      </View>
+      </View> */}
       <View style={styles.input}>
         <Image
           style={{ width: 20, height: 20 }}
@@ -48,7 +52,7 @@ const DisplayPage = ({ navigation }: DisplayPageProps) => {
       </SafeAreaView>
 
       <TouchableOpacity
-        onPress={() => navigation.navigate("Add")}
+        onPress={() => navigation.navigate("Add", { userName: userName })}
         style={styles.btnAdd}
       >
         <Image
@@ -67,7 +71,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     flexDirection: "column",
     gap: 50,
-    marginTop: 50,
+    paddingTop: 20,
+    backgroundColor: "#fff",
   },
   user: {
     flexDirection: "row",
@@ -92,7 +97,7 @@ const styles = StyleSheet.create({
     width: 334,
     height: 43,
     borderWidth: 0.5,
-    borderRadius: 12,
+    borderRadius: 6,
     paddingLeft: 10,
     alignItems: "center",
   },

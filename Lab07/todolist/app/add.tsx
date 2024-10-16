@@ -9,27 +9,16 @@ import {
   View,
 } from "react-native";
 
-import { NavigationProp } from "@react-navigation/native";
+import { NavigationProp, RouteProp } from "@react-navigation/native";
 
 type AddPageProps = {
   navigation: NavigationProp<any>;
+  route: RouteProp<{ params: { userName: string } }, "params">;
 };
 
-const AddPage = ({ navigation }: AddPageProps) => {
+const AddPage = ({ navigation, route }: AddPageProps) => {
   return (
     <View style={styles.container}>
-      <View style={styles.user}>
-        <Image
-          style={styles.imgUser}
-          source={require("../assets/user.png")}
-        ></Image>
-        <View style={styles.infoUser}>
-          <Text style={{ fontSize: 20, fontWeight: "bold" }}>Hi Twinkle</Text>
-          <Text style={{ fontSize: 14, fontWeight: "bold", opacity: 0.5 }}>
-            Have agrate day a head
-          </Text>
-        </View>
-      </View>
       <Text style={{ fontWeight: "bold", fontSize: 32 }}>ADD YOUR JOB</Text>
       <View style={styles.input}>
         <Image
@@ -39,10 +28,19 @@ const AddPage = ({ navigation }: AddPageProps) => {
         <TextInput placeholder="Input your job"></TextInput>
       </View>
       <TouchableOpacity
-        onPress={() => navigation.navigate("Add")}
+        onPress={() => navigation.navigate("Display")}
         style={styles.button}
       >
         <Text style={{ color: "white" }}>FINISH</Text>
+        <Image
+          style={{
+            width: 20,
+            height: 20,
+            transform: [{ scaleX: -1 }],
+            tintColor: "white",
+          }}
+          source={require("../assets/go-back.png")}
+        ></Image>
       </TouchableOpacity>
       <Image
         style={{ width: 190, height: 170 }}
@@ -56,17 +54,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    justifyContent: "center",
+    paddingTop: 50,
     flexDirection: "column",
     gap: 50,
-    marginTop: 50,
-  },
-  user: {
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-    gap: 10,
-    marginTop: -150,
+    backgroundColor: "#fff",
   },
   imgUser: {
     width: 50,
@@ -101,6 +92,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#00BDD6",
     borderRadius: 12,
+    flexDirection: "row",
+    gap: 10,
   },
 });
 
