@@ -46,7 +46,13 @@ export default function App() {
         <Stack.Screen
           name="Add"
           component={AddPage}
-          options={({ navigation, route }) => ({
+          options={({
+            navigation,
+            route,
+          }: {
+            navigation: any;
+            route: { params: { userName: string } };
+          }) => ({
             title: "",
             headerStyle: {
               height: 500,

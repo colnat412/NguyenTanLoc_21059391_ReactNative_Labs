@@ -9,9 +9,9 @@ import {
   View,
 } from "react-native";
 
-import Data from "../data/list-job";
 import { Item } from "./list/item-list";
 import { NavigationProp, RouteProp } from "@react-navigation/native";
+import { useEffect, useState } from "react";
 
 type DisplayPageProps = {
   navigation: NavigationProp<any>;
@@ -20,33 +20,54 @@ type DisplayPageProps = {
 
 const DisplayPage = ({ navigation, route }: DisplayPageProps) => {
   const userName = route.params?.userName;
+  const [search, setSearch] = useState<string>("");
+  const [data, setData] = useState<{ title: string }[]>([]);
+  const [filteredData, setFilteredData] = useState<{ title: string }[]>([]);
+
+  const handleSearch = (text: string) => {
+    setSearch(text);
+    if (text) {
+      const newData = data.filter((item) =>
+        item.title.toLowerCase().includes(text.toLowerCase())
+      );
+      setFilteredData(newData);
+    } else {
+      setFilteredData(data);
+    }
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await fetch(
+          "https://66651c7fd122c2868e3fcdef.mockapi.io/Jobs"
+        );
+        const data = await res.json();
+        setData(data);
+        setFilteredData(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, [data]);
   return (
     <View style={styles.container}>
-      {/* <View style={styles.user}>
-        <Image
-          style={styles.imgUser}
-          source={require("../assets/user.png")}
-        ></Image>
-        <View style={styles.infoUser}>
-          <Text style={{ fontSize: 20, fontWeight: "bold" }}>
-            Hi {userName}
-          </Text>
-          <Text style={{ fontSize: 14, fontWeight: "bold", opacity: 0.5 }}>
-            Have agrate day a head
-          </Text>
-        </View>
-      </View> */}
       <View style={styles.input}>
         <Image
           style={{ width: 20, height: 20 }}
           source={require("../assets/icon-search.png")}
         ></Image>
-        <TextInput placeholder="Search"></TextInput>
+        <TextInput
+          value={search}
+          onChangeText={handleSearch}
+          placeholder="Search"
+        ></TextInput>
       </View>
 
       <SafeAreaView style={styles.item}>
         <FlatList
-          data={Data}
+          data={filteredData}
           renderItem={({ item }) => <Item title={item.title} />}
         />
       </SafeAreaView>

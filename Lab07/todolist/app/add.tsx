@@ -1,4 +1,5 @@
 import {
+  Alert,
   FlatList,
   Image,
   SafeAreaView,
@@ -10,6 +11,7 @@ import {
 } from "react-native";
 
 import { NavigationProp, RouteProp } from "@react-navigation/native";
+import { useState } from "react";
 
 type AddPageProps = {
   navigation: NavigationProp<any>;
@@ -17,6 +19,29 @@ type AddPageProps = {
 };
 
 const AddPage = ({ navigation, route }: AddPageProps) => {
+  const userName = route.params?.userName;
+  const [job, setJob] = useState<string>("");
+
+  const createJob = async () => {
+    try {
+      const res = await fetch(
+        "https://66651c7fd122c2868e3fcdef.mockapi.io/Jobs",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ title: job }),
+        }
+      );
+      if (res.ok) {
+        navigation.navigate("Display");
+      } else Alert.alert("Error", "Failed to add job");
+    } catch (error) {
+      Alert.alert("Error", "An error occurred");
+    }
+  };
+
   return (
     <View style={styles.container}>
       <Text style={{ fontWeight: "bold", fontSize: 32 }}>ADD YOUR JOB</Text>
@@ -25,12 +50,13 @@ const AddPage = ({ navigation, route }: AddPageProps) => {
           style={{ width: 20, height: 20 }}
           source={require("../assets/iyj.png")}
         ></Image>
-        <TextInput placeholder="Input your job"></TextInput>
+        <TextInput
+          value={job}
+          onChangeText={setJob}
+          placeholder="Input your job"
+        ></TextInput>
       </View>
-      <TouchableOpacity
-        onPress={() => navigation.navigate("Display")}
-        style={styles.button}
-      >
+      <TouchableOpacity onPress={() => createJob()} style={styles.button}>
         <Text style={{ color: "white" }}>FINISH</Text>
         <Image
           style={{
