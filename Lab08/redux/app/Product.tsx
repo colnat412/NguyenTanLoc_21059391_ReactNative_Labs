@@ -16,7 +16,7 @@ const ProductItem = ({ name, price }: ProductItemProps) => {
         flexDirection: "column",
         borderRadius: 6,
         gap: 10,
-        padding: 14,
+        padding: 20,
         margin: 10,
         justifyContent: "center",
         alignItems: "center",
@@ -26,24 +26,73 @@ const ProductItem = ({ name, price }: ProductItemProps) => {
         style={{ width: 127, height: 119 }}
         source={require("../assets/bike-hp.png")}
       />
-      <Text>{name}</Text>
-      <Text>$ {price}</Text>
+      <Text style={{ fontWeight: "bold" }}>{name}</Text>
+      <Text style={{ fontWeight: "bold" }}>$ {price}</Text>
     </View>
   );
 };
 
 const Product = () => {
   return (
-    <View
-      style={{ justifyContent: "center", alignItems: "center", marginTop: 10 }}
-    >
-      <FlatList
-        data={data}
-        renderItem={({ item }) => (
-          <ProductItem name={item.name} price={item.price} />
-        )}
-        numColumns={2}
-      />
+    <View style={{ marginTop: 40, gap: 20 }}>
+      <View style={{ marginLeft: 26 }}>
+        <Text style={{ fontWeight: "bold", fontSize: 16, color: "red" }}>
+          The world’s Best Bike
+        </Text>
+      </View>
+      <View
+        style={{
+          gap: 10,
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <View style={{ flexDirection: "row", gap: 30 }}>
+          <TouchableOpacity
+            style={{
+              borderWidth: 0.5,
+              width: 90,
+              padding: 3,
+              justifyContent: "center",
+              alignItems: "center",
+              borderRadius: 6,
+            }}
+          >
+            <Text style={{ color: "red" }}>All</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={{
+              borderWidth: 0.5,
+              width: 90,
+              padding: 3,
+              justifyContent: "center",
+              alignItems: "center",
+              borderRadius: 6,
+            }}
+          >
+            <Text>Roadbike</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={{
+              borderWidth: 0.5,
+              width: 90,
+              padding: 3,
+              justifyContent: "center",
+              alignItems: "center",
+              borderRadius: 6,
+            }}
+          >
+            <Text>Mountain</Text>
+          </TouchableOpacity>
+        </View>
+        <FlatList
+          data={data}
+          renderItem={({ item }) => (
+            <ProductItem name={item.name} price={item.price} />
+          )}
+          numColumns={2}
+        />
+      </View>
     </View>
   );
 };

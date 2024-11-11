@@ -29,4 +29,14 @@ export const data = [
     name: "Product 6",
     price: 1800,
   },
+  {
+    id: 7,
+    name: "Product 7",
+    price: 1800,
+  },
+  {
+    id: 8,
+    name: "Product 8",
+    price: 1800,
+  },
 ];
