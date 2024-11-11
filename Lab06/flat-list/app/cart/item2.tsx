@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   product: {
-    flexDirection: "row",
+    flexDirection: "column",
     gap: 10,
   },
   text: {
