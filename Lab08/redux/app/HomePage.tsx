@@ -16,7 +16,7 @@ const HomePage = () => {
       <View
         style={{ backgroundColor: "#E941411A", padding: 30, borderRadius: 30 }}
       >
-        <View style={{ borderWidth: 0.5, borderColor: "gray" }}>
+        <View style={{}}>
           <Image
             style={{ width: 250, height: 240 }}
             source={require("../assets/bike-hp.png")}
