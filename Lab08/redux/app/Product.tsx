@@ -1,6 +1,7 @@
 import { FlatList, Image, Text, TouchableOpacity, View } from "react-native";
 
 import { data } from "../data";
+import { useNavigation } from "@react-navigation/native";
 
 interface ProductItemProps {
   name: string;
@@ -9,8 +10,13 @@ interface ProductItemProps {
 }
 
 const ProductItem = ({ name, price }: ProductItemProps) => {
+  const navigation = useNavigation<any>();
+  const handleNavigation = () => {
+    navigation.navigate("ProductDetails");
+  };
   return (
-    <View
+    <TouchableOpacity
+      onPress={handleNavigation}
       style={{
         backgroundColor: "#f5d3b6",
         flexDirection: "column",
@@ -28,7 +34,7 @@ const ProductItem = ({ name, price }: ProductItemProps) => {
       />
       <Text style={{ fontWeight: "bold" }}>{name}</Text>
       <Text style={{ fontWeight: "bold" }}>$ {price}</Text>
-    </View>
+    </TouchableOpacity>
   );
 };
 
