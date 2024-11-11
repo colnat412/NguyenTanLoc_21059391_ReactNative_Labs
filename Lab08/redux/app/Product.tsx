@@ -1,5 +1,5 @@
 import { FlatList, Image, Text, TouchableOpacity, View } from "react-native";
-
+import { useDispatch } from 'react-redux';
 import { data } from "../data";
 import { useNavigation } from "@react-navigation/native";
 
@@ -11,6 +11,7 @@ interface ProductItemProps {
 
 const ProductItem = ({ name, price }: ProductItemProps) => {
   const navigation = useNavigation<any>();
+  const dispatch = useDispatch();
   const handleNavigation = () => {
     navigation.navigate("ProductDetails");
   };
